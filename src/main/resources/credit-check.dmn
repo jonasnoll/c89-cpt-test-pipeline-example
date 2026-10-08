@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/"
+             xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/"
+             xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/"
+             id="Definitions_credit-check"
+             name="credit-check"
+             namespace="http://camunda.io/schema/dmn"
+             exporter="c89-test-pipeline"
+             exporterVersion="1.0.0">
+
+  <decision id="credit-check" name="Credit check">
+    <decisionTable id="DecisionTable_creditCheck" hitPolicy="UNIQUE">
+      <input id="Input_CreditScore" label="Credit score">
+        <inputExpression id="InputExpression_CreditScore" typeRef="number">
+          <text>creditScore</text>
+        </inputExpression>
+      </input>
+      <output id="Output_Approved" label="Approved" name="approved" typeRef="boolean" />
+      <rule id="Rule_Approved">
+        <inputEntry id="InputEntry_Approved">
+          <text>&gt;= 600</text>
+        </inputEntry>
+        <outputEntry id="OutputEntry_Approved">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="Rule_Rejected">
+        <inputEntry id="InputEntry_Rejected">
+          <text>&lt; 600</text>
+        </inputEntry>
+        <outputEntry id="OutputEntry_Rejected">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram id="DMNDiagram_credit-check">
+      <dmndi:DMNShape id="DMNShape_credit-check" dmnElementRef="credit-check">
+        <dc:Bounds height="80" width="180" x="160" y="100" />
+      </dmndi:DMNShape>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+
+</definitions>
